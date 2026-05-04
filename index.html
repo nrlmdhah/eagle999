@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EAGLE 999 SDN BHD — Professional Security Services</title>
+  <!-- Favicon / Touch icon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/logo-eagle999.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/logo-eagle999.png">
+  <meta name="theme-color" content="#0f1724">
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#0b6fb4;--accent-2:#ffb400;--danger:#d62828;--muted:#94a3b8;--text:#e6eef6}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--text);background:linear-gradient(180deg,#061127 0%, #071427 60%)}
+    a{color:inherit;text-decoration:none}
+    nav{background:rgba(3,7,18,0.6);backdrop-filter:blur(6px);position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .nav-container{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo svg, .logo img{width:46px;height:46px}
+    .logo img{object-fit:contain;border-radius:6px}
+    .logo .brand{font-weight:700;letter-spacing:1px}
+    .nav-links{display:flex;gap:18px;align-items:center;list-style:none;margin:0;padding:0}
+    .nav-links a{padding:8px 12px;border-radius:8px}
+    .nav-links a:hover{background:rgba(255,255,255,0.02)}
+
+    .hero{max-width:1200px;margin:28px auto;padding:48px;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent);border-radius:14px;display:grid;grid-template-columns:1fr 480px;gap:28px}
+    .hero h1{margin:0;font-size:42px;line-height:1.04}
+    .hero p{color:var(--muted)}
+    .cta{display:inline-block;margin-top:14px;padding:10px 16px;border-radius:8px;background:var(--accent);color:white}
+
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.00));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:0 0 6px 0}
+    .muted{color:var(--muted);font-size:14px}
+
+    .mission, .directors, .clients, .contact{max-width:1200px;margin:28px auto;padding:22px;background:rgba(255,255,255,0.02);border-radius:12px}
+    .directors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left}
+    th{color:var(--accent-2)}
+
+    .orgchart{display:flex;justify-content:center;margin-top:14px}
+    .orgbox{background:linear-gradient(180deg,var(--card),#071028);padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
+
+    .footer{max-width:1200px;margin:22px auto;padding:18px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    /* responsive */
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;padding:24px}
+      .hero h1{font-size:28px}
+      .nav-links{display:none}
+    }
+
+    /* small helper styles for slider */
+    .slider{position:relative;border-radius:10px;overflow:hidden;height:380px;background:#021426}
+    .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--muted)}
+    .indicators{position:absolute;left:50%;transform:translateX(-50%);bottom:10px;display:flex;gap:8px}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.2)}
+    .dot.active{background:var(--accent)}
+    /* ensure anchored sections are visible below the sticky navbar */
+    section[id]{scroll-margin-top:calc(var(--nav-offset,64px) + 8px)}
+    html{scroll-behavior:smooth}
+    /* Contact layout: responsive two-column (main + sidebar) */
+    .contact-grid{display:grid;grid-template-columns:1fr minmax(260px,360px);gap:12px;align-items:start}
+    .contact .card iframe{width:100%;height:220px;border:0;display:block}
+
+    /* Video player styles */
+    .card video{width:100%;height:auto;border-radius:8px;display:block}
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;padding:24px}
+      .hero h1{font-size:28px}
+      .contact-grid{grid-template-columns:1fr}
+      .contact .card iframe{height:180px}
+      .slider{height:260px}
+    }
+    /* Simple scroll animations */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .animated{opacity:0;transform:translateY(12px);will-change:transform,opacity}
+    .animated.in{animation:fadeInUp 700ms cubic-bezier(.2,.8,.2,1) both}
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="images/logo-eagle999.png" alt="Eagle 999 logo" loading="lazy">
+        <div class="brand">EAGLE 999</div>
+      </div>
+
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#home">Home</a></li>
+        <li><a class="nav-link" href="#services">Services</a></li>
+        <li><a class="nav-link" href="#mission">Mission</a></li>
+        <li><a class="nav-link" href="#directors">Directors</a></li>
+        <li><a class="nav-link" href="#clients">Clients</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <h1>Professional Security Services — Trusted Nationwide</h1>
+        <p class="muted">EAGLE 999 SDN BHD (Reg: 201201031448) — Licensed security & investigation agency since 2012. Our teams are disciplined, trained, and committed to public safety and corporate protection.</p>
+
+        <div style="display:flex;gap:12px;margin-top:16px">
+          <a class="cta" href="#services">View Services</a>
+          <a class="cta" style="background:transparent;border:1px solid rgba(255,255,255,0.06)" href="#contact">Contact Operations</a>
+        </div>
+
+        <section id="services" aria-labelledby="services-heading" style="margin-top:20px">
+          <h2 id="services-heading" style="margin:0 0 10px 0">Services</h2>
+          <div class="services-grid">
+            <div class="card"><h3>Static Control Service</h3><div class="muted">24/12/8 hour shifts — trained guards</div></div>
+            <div class="card"><h3>Armed Guard Service</h3><div class="muted">Licensed arms control (where authorised)</div></div>
+            <div class="card"><h3>Cash-In-Transit (C.I.T)</h3><div class="muted">Secure transport & escort</div></div>
+            <div class="card"><h3>Dog Handling Unit</h3><div class="muted">K9 teams for detection & patrol</div></div>
+            <div class="card"><h3>Private Investigation</h3><div class="muted">Surveillance, inquiries, intelligence</div></div>
+            <div class="card"><h3>Security Consultancy</h3><div class="muted">Risk assessment, systems & training</div></div>
+          </div>
+          <!-- video moved to aside (Quick Info column) -->
+        </section>
+      </div>
+
+      <aside>
+        <div class="slider" aria-hidden="false">
+          <div class="slide" style="background-image: url('images/security-01.jpg');background-size:cover;background-position:center;">&nbsp;</div>
+          <div class="slide" style="background-image: url('images/security-02.jpg');background-size:cover;background-position:center;opacity:0">&nbsp;</div>
+          <div class="slide" style="background-image: url('images/security-03.jpg');background-size:cover;background-position:center;opacity:0">&nbsp;</div>
+          <div class="indicators">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="card">
+          <strong>Quick Info</strong>
+          <div class="muted" style="margin-top:6px">License No: 02250100 (exp: 31 Dec 2025)<br>MOF No: 357-02235447 (exp: 09 Feb 2027)<br>Paid-up capital: RM 1,290,000</div>
+        </div>
+
+        <!-- Company video moved here (below Quick Info) -->
+        <div style="margin-top:12px" class="card">
+          <h4 style="margin:0 0 8px 0">Company Video</h4>
+          <video controls playsinline preload="metadata" poster="images/vip-protection.png">
+            <source src="videos/your-video.mp4" type="video/mp4">
+            Your browser does not support the video tag. <a href="videos/your-video.mp4">Download / open video</a>.
+          </video>
+        </div>
+      </aside>
+    </section>
+
+    <section class="mission" id="mission">
+      <h2>Mission & Objectives</h2>
+      <p class="muted">Provide a professional security workforce, reduce crime risk for clients, develop local employment, and modernise security operations with training and technology.</p>
+      <ul>
+        <li>Leverage experience from ex-armed forces and industry professionals.</li>
+        <li>Create sustainable employment for Malaysians.</li>
+        <li>Raise industry standards through training and systems.</li>
+        <li>Support authorities in crime reduction and public safety.</li>
+      </ul>
+    </section>
+
+    <section class="directors" id="directors">
+      <h2>Company Directors</h2>
+      <div class="directors-grid">
+        <div class="card">
+          <h3>Azman Bin Hussain</h3>
+          <p class="muted">Managing Director — DOB: 15 Mar 1973</p>
+          <p class="muted">Background: Technician/M&E, Laser Technician, Group Head at Epson, Senior Technician at Rapid Rail; experience in security operations.</p>
+        </div>
+
+        <div class="card">
+          <h3>Faizal Shah Putra Bin Hasanudin</h3>
+          <p class="muted">Operation Director — DOB: 28 Feb 1996</p>
+          <p class="muted">Diploma in Construction Technology; 3 years security experience.</p>
+        </div>
+
+        <div class="card">
+          <h3>Muhamad Shah Iqbal Bin Muharral</h3>
+          <p class="muted">Finance Director — DOB: 8 Nov 1986</p>
+          <p class="muted">Bachelor of Finance; 11 years in security; social activities: UMNO member.</p>
+        </div>
+      </div>
+
+      <div class="orgchart" aria-hidden="false">
+        <div class="orgbox">
+          <strong>Managing Director</strong><br>
+          <small class="muted">Azman Bin Hussain</small>
+        </div>
+        <div style="width:18px"></div>
+        <div class="orgbox">
+          <strong>Operation Director</strong><br>
+          <small class="muted">Faizal Shah Putra</small>
+        </div>
+        <div style="width:18px"></div>
+        <div class="orgbox">
+          <strong>Finance Director</strong><br>
+          <small class="muted">Muhamad Shah Iqbal</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="clients" id="clients">
+      <h2>Clients & Projects</h2>
+      <p class="muted">EAGLE 999 provides services to a wide range of government and private clients across Malaysia. (Selected clients shown below.)</p>
+
+      <table>
+        <thead>
+          <tr><th>No</th><th>Client / Project</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Jabatan Agama Islam Selangor — SRAI Taman Keramat, Gombak</td><td>Government - Schools</td></tr>
+          <tr><td>2</td><td>Jabatan Agama Islam Selangor — PAID Sepang</td><td>Government</td></tr>
+          <tr><td>3</td><td>Jabatan Agama Islam Selangor — SRA Saujana Utama</td><td>Government - Schools</td></tr>
+          <tr><td>4</td><td>Kementerian Pendidikan Malaysia — Negeri Johor (Kulai)</td><td>Government - Education</td></tr>
+          <tr><td>5</td><td>Kementerian Pendidikan Malaysia — Negeri Johor (Pontian)</td><td>Government</td></tr>
+          <tr><td>6</td><td>Majlis Bandaraya Shah Alam (MBSA)</td><td>Local Council</td></tr>
+          <tr><td>7</td><td>Kementerian Kesihatan Malaysia — Hospital Tunku Azizah</td><td>Healthcare</td></tr>
+          <tr><td>8</td><td>Perbadanan Putrajaya</td><td>Federal Body</td></tr>
+          <tr><td>9</td><td>Prasarana Malaysia Berhad — LRT Stations</td><td>Transport</td></tr>
+          <tr><td>10</td><td>Universiti Utara Malaysia</td><td>Education</td></tr>
+          <!-- additional rows could be populated from the full PDF -->
+        </tbody>
+      </table>
+
+      <p class="muted" style="margin-top:8px">Full client list (52 entries) is available in the company profile and can be expanded into the table or exported as CSV on request.</p>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Contact & Corporate Info</h2>
+      <div class="contact-grid">
+        <div class="card">
+          <h4>Head Office</h4>
+          <p class="muted">NO 75-2, JALAN PRIMA SG 3, TAMAN PRIMA SRI GOMBAK, 68100 BATU CAVES, SELANGOR</p>
+
+          <p class="muted">Tel: <a href="tel:0361811209">03-6181 1209</a> | Fax: 03-6177 9316<br>Email: <a href="mailto:info@eagle999.com.my">info@eagle999.com.my</a></p>
+
+          <h4 style="margin-top:10px">Company Details</h4>
+          <ul class="muted">
+            <li>Company No: 201201031448 (1015935-T)</li>
+            <li>MOF No: 357-02235447</li>
+            <li>SST No: W10-1809-32001112</li>
+            <li>License No: 02250100</li>
+            <li>Paid-up Capital: RM 1,290,000</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="card" style="padding:0;overflow:hidden">
+            <iframe
+              src="https://www.google.com/maps?q=NO+75-2,+JALAN+PRIMA+SG+3,+TAMAN+PRIMA+SRI+GOMBAK,+68100+BATU+CAVES,+SELANGOR&output=embed"
+              width="100%" height="220" style="border:0;display:block" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <div style="margin-top:12px">
+            <div class="card">
+              <h4>Insurance & Certifications</h4>
+              <p class="muted">Lonpac Insurance: Error & Omission, Public Liability, Group Personal Accident, Fidelity Guarantee.</p>
+              <p class="muted">Registrations: KWSP, SOCSO, HRD Corp, ROC, MOF, Customs, Security Services Association of Malaysia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>EAGLE 999 SDN BHD</strong>
+      <div class="muted">Committed to professional security services nationwide.</div>
+    </div>
+    <div class="muted">© 2025 EAGLE 999 SDN BHD — All rights reserved.</div>
+  </footer>
+
+  <script>
+    // simple slider script (no external libs)
+    (function(){
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+      let idx=0;
+      function show(i){
+        slides.forEach((s,si)=>s.style.opacity = si===i? '1':'0');
+        dots.forEach((d,di)=>d.classList.toggle('active', di===i));
+      }
+      show(0);
+      setInterval(()=>{ idx=(idx+1)%slides.length; show(idx); },4000);
+    })();
+    
+    // Smooth scroll for nav links that accounts for sticky navbar height
+    (function(){
+      const nav = document.getElementById('navbar');
+      const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+      function scrollToHash(hash) {
+        if (!hash) return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+
+        const navHeight = nav ? nav.offsetHeight : 0;
+        // apply scroll-margin-top dynamically to be safe
+        try { target.style.scrollMarginTop = (navHeight + 8) + 'px'; } catch(e){}
+
+        if (hash === '#home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e){
+          // let normal <a> navigation for external links
+          const href = this.getAttribute('href');
+          if (!href || !href.startsWith('#')) return;
+          e.preventDefault();
+          // update URL hash without jumping
+          history.pushState(null, '', href);
+          scrollToHash(href);
+        });
+      });
+
+      // If the page loads with a hash, adjust scroll to account for nav
+      if (window.location.hash) {
+        // delay to allow layout to stabilise
+        setTimeout(() => scrollToHash(window.location.hash), 60);
+      }
+    })();
+    
+    // Scroll-triggered animations for cards, headings and org boxes
+    (function(){
+      const selector = '.card, h2, .orgbox, .logo';
+      const elements = document.querySelectorAll(selector);
+      if (!elements || elements.length === 0) return;
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+      elements.forEach(el => {
+        // avoid animating elements that are inside sticky/header areas
+        el.classList.add('animated');
+        observer.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
